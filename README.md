@@ -1,4 +1,5 @@
 # Spectre
 Message embedding using Signal Modulators (WIP!)
 
-![image](https://github.com/TheBarret/Spectre/assets/25234371/9ac752ea-e9a8-4e9b-b97b-cbc2f271aac1)
+![image](https://github.com/TheBarret/Spectre/assets/25234371/0ac12d5f-ed49-4510-bd17-f40efaa8c11a)
+
