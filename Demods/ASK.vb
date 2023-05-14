@@ -81,7 +81,7 @@
 
     Public Overrides ReadOnly Property Name As String
         Get
-            Return "Amplitude Shift Keying"
+            Return "Binary Amplitude Shift Keying"
         End Get
     End Property
 End Class

@@ -24,6 +24,22 @@
         Next
     End Sub
 
+    Public Shared Sub Smooth(ByRef buffer() As Single, factor As Single, cutoff As Single)
+        If factor = 0 Or cutoff = 0 Then Return
+        Dim length As Integer = buffer.Length
+        ' Apply smoothing to the buffer
+        For i As Integer = 1 To length - 2
+            buffer(i) = buffer(i - 1) * factor + buffer(i) * (1.0F - factor) + buffer(i + 1) * factor
+        Next
+        ' Remove sudden high or low peaks
+        For i As Integer = 1 To length - 2
+            If Math.Abs(buffer(i) - buffer(i - 1)) > cutoff AndAlso Math.Abs(buffer(i) - buffer(i + 1)) > cutoff Then
+                buffer(i) = (buffer(i - 1) + buffer(i + 1)) / 2.0F
+            End If
+        Next
+    End Sub
+
+
     Public Shared Sub BandPass(ByRef buffer() As Single, f1 As Single, f2 As Single, delta As Single)
         Filters.LowPass(buffer, f1, delta)
         Filters.HighPass(buffer, f2, delta)

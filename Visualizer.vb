@@ -1,16 +1,19 @@
 ﻿Public Class Visualizer
     Public Property Bounds As Rectangle
-
+    Public Property SignalColor As Color
+    Public Property GridColor As Color
     Sub New(bounds As Rectangle)
         Me.Bounds = bounds
+        Me.SignalColor = Color.Navy
+        Me.GridColor = Color.Plum
     End Sub
 
     Public Function Render(samples() As Single) As Bitmap
         Using bm As New Bitmap(Me.Bounds.Width, Me.Bounds.Height)
             Using g As Graphics = Graphics.FromImage(bm)
                 g.SmoothingMode = Drawing2D.SmoothingMode.AntiAlias
-                Using p As New Pen(Color.Red) With {.DashStyle = Drawing2D.DashStyle.Solid}
-                    Using gpen As New Pen(Color.Navy) With {.DashStyle = Drawing2D.DashStyle.Dot}
+                Using p As New Pen(Me.SignalColor) With {.DashStyle = Drawing2D.DashStyle.Solid}
+                    Using gpen As New Pen(Me.GridColor) With {.DashStyle = Drawing2D.DashStyle.Dot}
                         ' Calculate the scaling factors for the x and y axes
                         Dim scaleX As Single = CSng(Me.Bounds.Width / (samples.Length - 1))
                         Dim scaleY As Single = CSng(Me.Bounds.Height / 2)
@@ -44,6 +47,7 @@
                             Dim y2 As Single = samples(i) * scaleY
                             g.DrawLine(p, x1, -y1, x2, -y2)
                         Next
+                        Call New Labeler(samples).Analyse(bm, g)
                     End Using
                 End Using
             End Using

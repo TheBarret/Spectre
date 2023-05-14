@@ -81,7 +81,7 @@
 
     Public Overrides ReadOnly Property Name As String
         Get
-            Return "Phase Shift Keying"
+            Return "Binary Phase Shift Keying"
         End Get
     End Property
 End Class

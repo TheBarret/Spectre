@@ -94,7 +94,7 @@
 
     Public Overrides ReadOnly Property Name As String
         Get
-            Return "Quadrature Amplitude Modulation"
+            Return "Binary Quadrature Amplitude Modulation"
         End Get
     End Property
 End Class
